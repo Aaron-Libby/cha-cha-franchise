@@ -222,110 +222,66 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How It Works - Desktop (full-width forest green with scrolling carousel) */}
-      <section id="how-it-works" className="hidden md:block bg-forest relative overflow-hidden" style={{ height: 556 }}>
-        {/* Header */}
-        <div className="absolute top-[62px] left-1/2 -translate-x-1/2 w-[1280px] px-10 flex items-start gap-8">
+      {/* How It Works - Desktop (pink header + 3x2 grid) */}
+      <section id="how-it-works" className="hidden md:block max-w-[1280px] mx-auto px-10 pb-16">
+        {/* Pink header bar */}
+        <div className="bg-pink rounded-[10px] px-8 py-8 flex items-center gap-8 mb-4">
           <h2 className="text-cream text-[50px] font-bold leading-[1.1] tracking-[-1px] shrink-0">
             How It Works
           </h2>
-          <p className="text-white font-medium text-[18px] leading-[1.3] tracking-[-0.36px] max-w-[498px] pt-1">
+          <p className="text-white font-medium text-[18px] leading-[1.3] tracking-[-0.36px] max-w-[498px] flex-1">
             We grow deliberately. Our process is designed to ensure alignment — on values, execution, and long-term vision.
           </p>
+          <PrimaryButton />
         </div>
 
-        {/* Timeline line */}
-        <div className="absolute left-0 right-0 top-[254px] border-t border-cream/30" />
-
-        {/* Auto-scrolling card carousel */}
-        <div className="absolute top-[108px] left-0 right-0 h-[384px] overflow-hidden">
-          <div className="flex animate-scroll">
-            {[...howItWorksData, ...howItWorksData].map((card, i) => (
-              <div key={i} className="w-[470px] shrink-0 relative" style={{ height: 252, marginTop: 64 }}>
-                {/* Icon + Title (above timeline) */}
-                <div className="flex items-start gap-2 absolute top-[12px] left-[76px] right-[36px]">
-                  <div className="w-[66px] h-[66px] rounded-full overflow-hidden shrink-0">
-                    <Image src={card.image} alt={card.title} width={66} height={66} className="object-cover w-full h-full" />
-                  </div>
-                  <p className="text-pink font-semibold text-[20px] uppercase tracking-[-0.4px] leading-[1.1] pt-1">
-                    {card.title}
-                  </p>
+        {/* 3x2 grid of cards */}
+        <div className="grid grid-cols-3 gap-[14px]">
+          {howItWorksData.map((card) => (
+            <div key={card.number} className="bg-forest rounded-[10px] p-6 h-[238px] relative overflow-hidden hover:scale-[1.02] transition-transform duration-300">
+              <div className="flex items-start gap-2 mb-3">
+                <div className="w-[66px] h-[66px] rounded-full overflow-hidden shrink-0">
+                  <Image src={card.image} alt={card.title} width={66} height={66} className="object-cover w-full h-full" />
                 </div>
-                {/* Numbered circle (on timeline) */}
-                <div className="absolute left-[16px] top-[51px] w-[54px] h-[54px] rounded-full border-2 border-cream/40 flex items-center justify-center">
-                  <span className="text-cream font-semibold text-[30px] leading-[1.1] tracking-[-0.6px] uppercase">
-                    {card.number}
-                  </span>
-                </div>
-                {/* Description (below timeline) */}
-                <p className="text-cream font-medium text-[18px] leading-[1.1] tracking-[-0.36px] absolute top-[101px] left-[76px] right-[36px]">
-                  {card.description}
+                <p className="text-pink font-semibold text-[20px] uppercase tracking-[-0.4px] leading-[1.1] pt-1">
+                  {card.number}. {card.title}
                 </p>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Apply Now button */}
-        <div className="absolute bottom-[50px] left-1/2 -translate-x-1/2">
-          <PrimaryButton />
+              <p className="text-cream font-medium text-[18px] leading-[1.1] tracking-[-0.36px]">
+                {card.description}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* How It Works - Mobile */}
-      <section id="how-it-works-mobile" className="md:hidden bg-forest px-6 py-10">
-        <h2 className="text-cream text-[36px] font-bold leading-[1.1] tracking-[-1px] mb-4">
-          How It Works
-        </h2>
-        <p className="text-white font-medium text-[16px] leading-[1.3] tracking-[-0.36px] mb-6">
-          We grow deliberately. Our process is designed to ensure alignment — on values, execution, and long-term vision.
-        </p>
-        <div className="flex justify-center mb-8">
-          <a
-            href="#apply"
-            className="inline-block bg-white text-forest text-[20px] font-semibold uppercase tracking-[-0.4px] rounded-[8px] px-6 py-3 text-center"
-          >
-            Apply Now
-          </a>
+      {/* How It Works - Mobile (pink header + stacked cards) */}
+      <section id="how-it-works-mobile" className="md:hidden px-6 pb-10">
+        {/* Pink header bar */}
+        <div className="bg-pink rounded-[8px] px-6 py-4 mb-4">
+          <h2 className="text-cream text-[40px] font-bold leading-[1.1] tracking-[-0.8px]">
+            How It Works
+          </h2>
         </div>
 
+        <p className="text-text-muted font-medium text-[18px] leading-[1.3] tracking-[-0.36px] mb-4">
+          We grow deliberately. Our process is designed to ensure alignment — on values, execution, and long-term vision.
+        </p>
+
         <div className="space-y-4">
-          <HowItWorksCard
-            number="1"
-            title="Introduction to Cha Cha"
-            description="It starts with an application. We review each one carefully to understand your background, experience, and why Cha Cha resonates with you. If there's a strong fit, our team will reach out to begin the conversation."
-            image="/images/step-1.png"
-          />
-          <HowItWorksCard
-            number="2"
-            title="Introductory Conversation"
-            description="This is a mutual introduction. We take time to learn about you, your market, and how you think about operating a business — and we'll walk you through Cha Cha's approach, expectations, and growth plans."
-            image="/images/step-2.png"
-          />
-          <HowItWorksCard
-            number="3"
-            title="Location & Market Alignment"
-            description="Our team works closely with partners on market selection and site strategy. We prioritize locations that support repeat daily visits and long-term brand health, not just short-term traffic."
-            image="/images/step-3.png"
-          />
-          <HowItWorksCard
-            number="4"
-            title="Onboarding & Training"
-            description="Once approved, we guide you through onboarding — from training and systems to store design and operations. You'll be supported throughout the process with clear tools, resources, and direct access to our team."
-            image="/images/step-4.png"
-          />
-          <HowItWorksCard
-            number="5"
-            title="Build-Out & Preparation"
-            description="We collaborate closely during build-out and pre-opening to ensure every detail reflects the Cha Cha experience — from layout and flow to staffing and opening readiness."
-            image="/images/step-5.png"
-          />
-          <HowItWorksCard
-            number="6"
-            title="Opening & Ongoing Support"
-            description="When your café opens, our partnership continues. We provide ongoing support across operations, marketing, and brand standards to help you build a strong, sustainable business."
-            image="/images/step-6.png"
-          />
+          {howItWorksData.map((card) => (
+            <HowItWorksCard
+              key={card.number}
+              number={card.number}
+              title={card.title}
+              description={card.description}
+              image={card.image}
+            />
+          ))}
+        </div>
+
+        <div className="flex justify-center mt-6">
+          <SecondaryButton label="Apply Now" href="#apply-today" />
         </div>
       </section>
 
