@@ -50,51 +50,111 @@ export function AboutUsTimeline() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div className="flex gap-2 h-[400px] md:h-[468px]">
-      {timelineData.map((item, index) => {
-        const isActive = index === activeIndex;
+    <>
+      {/* Desktop: Horizontal accordion */}
+      <div className="hidden md:flex gap-2 h-[468px]">
+        {timelineData.map((item, index) => {
+          const isActive = index === activeIndex;
 
-        if (isActive) {
+          if (isActive) {
+            return (
+              <div
+                key={item.year}
+                className="rounded-[10px] flex-1 min-w-0 p-10 flex flex-row gap-6 transition-all duration-500 ease-in-out"
+                style={{ backgroundColor: item.color }}
+              >
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-forest font-semibold text-[32px] uppercase tracking-[-0.64px] leading-[1.1] mb-6">
+                    {item.title}
+                  </h3>
+                  <p className="text-text-muted font-medium text-[24px] leading-[1.3] tracking-[-0.48px]">
+                    {item.description}
+                  </p>
+                </div>
+                <div className="rounded-[15px] overflow-hidden w-[320px] h-full shrink-0">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    width={320}
+                    height={400}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+              </div>
+            );
+          }
+
           return (
-            <div
+            <button
               key={item.year}
-              className="rounded-[10px] flex-1 min-w-0 p-6 md:p-10 flex flex-col md:flex-row gap-6 transition-all duration-500 ease-in-out"
+              onClick={() => setActiveIndex(index)}
+              className="rounded-[8px] w-[48px] shrink-0 flex items-center justify-center cursor-pointer hover:opacity-80 transition-all duration-300"
               style={{ backgroundColor: item.color }}
             >
-              <div className="flex-1 min-w-0">
-                <h3 className="text-forest font-semibold text-[24px] md:text-[32px] uppercase tracking-[-0.64px] leading-[1.1] mb-6">
-                  {item.title}
-                </h3>
-                <p className="text-text-muted font-medium text-[16px] md:text-[24px] leading-[1.3] tracking-[-0.48px]">
-                  {item.description}
-                </p>
-              </div>
-              <div className="rounded-[15px] overflow-hidden w-full md:w-[320px] h-[200px] md:h-full shrink-0">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  width={320}
-                  height={400}
-                  className="object-cover w-full h-full"
-                />
-              </div>
-            </div>
+              <span className="text-forest font-semibold text-[24px] uppercase tracking-[-0.48px] -rotate-90 whitespace-nowrap">
+                {item.year}
+              </span>
+            </button>
           );
-        }
+        })}
+      </div>
 
-        return (
-          <button
-            key={item.year}
-            onClick={() => setActiveIndex(index)}
-            className="rounded-[8px] w-[48px] shrink-0 flex items-center justify-center cursor-pointer hover:opacity-80 transition-all duration-300"
-            style={{ backgroundColor: item.color }}
-          >
-            <span className="text-forest font-semibold text-[18px] md:text-[24px] uppercase tracking-[-0.48px] -rotate-90 whitespace-nowrap">
-              {item.year}
-            </span>
-          </button>
-        );
-      })}
-    </div>
+      {/* Mobile: Vertical accordion */}
+      <div className="flex md:hidden flex-col gap-2">
+        {timelineData.map((item, index) => {
+          const isActive = index === activeIndex;
+
+          if (isActive) {
+            return (
+              <div key={item.year}>
+                {/* Active year tab */}
+                <div
+                  className="rounded-t-[10px] py-2 px-4 text-center"
+                  style={{ backgroundColor: item.color }}
+                >
+                  <span className="text-forest font-semibold text-[18px] uppercase tracking-[-0.48px]">
+                    {item.year}
+                  </span>
+                </div>
+                {/* Expanded content */}
+                <div
+                  className="rounded-b-[10px] p-6 flex flex-col gap-4"
+                  style={{ backgroundColor: item.color }}
+                >
+                  <h3 className="text-forest font-semibold text-[24px] uppercase tracking-[-0.64px] leading-[1.1]">
+                    {item.title}
+                  </h3>
+                  <p className="text-text-muted font-medium text-[16px] leading-[1.3] tracking-[-0.48px]">
+                    {item.description}
+                  </p>
+                  <div className="rounded-[15px] overflow-hidden w-full h-[250px]">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={375}
+                      height={250}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                </div>
+              </div>
+            );
+          }
+
+          return (
+            <button
+              key={item.year}
+              onClick={() => setActiveIndex(index)}
+              className="rounded-[10px] py-3 px-4 text-center cursor-pointer hover:opacity-80 transition-opacity"
+              style={{ backgroundColor: item.color }}
+            >
+              <span className="text-forest font-semibold text-[18px] uppercase tracking-[-0.48px]">
+                {item.year}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    </>
   );
 }
