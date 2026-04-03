@@ -56,7 +56,7 @@ function MapTabs({ activeTab, setActiveTab }: { activeTab: string; setActiveTab:
 }
 
 export function MapSection() {
-  const [activeTab, setActiveTab] = useState("usa");
+  const [activeTab, setActiveTab] = useState("canada");
   const active = mapData.find((m) => m.id === activeTab)!;
 
   return (

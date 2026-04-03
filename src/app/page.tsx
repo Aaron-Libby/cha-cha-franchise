@@ -53,6 +53,15 @@ function HowItWorksCard({
   );
 }
 
+const howItWorksData = [
+  { number: "1", title: "Introduction to Cha Cha", description: "It starts with an application. We review each one carefully to understand your background, experience, and why Cha Cha resonates with you. If there's a strong fit, our team will reach out to begin the conversation.", image: "/images/step-1.png" },
+  { number: "2", title: "Introductory Conversation", description: "This is a mutual introduction. We take time to learn about you, your market, and how you think about operating a business — and we'll walk you through Cha Cha's approach, expectations, and growth plans.", image: "/images/step-2.png" },
+  { number: "3", title: "Location & Market Alignment", description: "Our team works closely with partners on market selection and site strategy. We prioritize locations that support repeat daily visits and long-term brand health, not just short-term traffic.", image: "/images/step-3.png" },
+  { number: "4", title: "Onboarding & Training", description: "Once approved, we guide you through onboarding — from training and systems to store design and operations. You'll be supported throughout the process with clear tools, resources, and direct access to our team.", image: "/images/step-4.png" },
+  { number: "5", title: "Build-Out & Preparation", description: "We collaborate closely during build-out and pre-opening to ensure every detail reflects the Cha Cha experience — from layout and flow to staffing and opening readiness.", image: "/images/step-5.png" },
+  { number: "6", title: "Opening & Ongoing Support", description: "When your café opens, our partnership continues. We provide ongoing support across operations, marketing, and brand standards to help you build a strong, sustainable business.", image: "/images/step-6.png" },
+];
+
 export default function Home() {
   return (
     <div className="bg-cream min-h-screen">
@@ -205,57 +214,54 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How It Works - Desktop */}
-      <section id="how-it-works" className="hidden md:block max-w-[1280px] mx-auto px-10 pb-16">
-        {/* Header */}
-        <div className="bg-pink rounded-[10px] p-8 flex flex-row items-center justify-between gap-4 mb-6">
-          <h2 className="text-cream text-[50px] font-bold leading-[1.1] tracking-[-1px]">
-            How It Works
-          </h2>
-          <p className="text-white font-medium text-[18px] leading-[1.3] tracking-[-0.36px] max-w-[498px]">
-            We grow deliberately. Our process is designed to ensure alignment — on values, execution, and long-term vision.
-          </p>
-          <PrimaryButton />
+      {/* How It Works - Desktop (full-width forest green with scrolling carousel) */}
+      <section id="how-it-works" className="hidden md:block bg-forest py-12 overflow-hidden">
+        <div className="max-w-[1280px] mx-auto px-10">
+          {/* Header */}
+          <div className="flex items-start justify-between gap-8 mb-8">
+            <h2 className="text-cream text-[50px] font-bold leading-[1.1] tracking-[-1px] shrink-0">
+              How It Works
+            </h2>
+            <p className="text-white font-medium text-[18px] leading-[1.3] tracking-[-0.36px] max-w-[498px]">
+              We grow deliberately. Our process is designed to ensure alignment — on values, execution, and long-term vision.
+            </p>
+          </div>
         </div>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-3 gap-4">
-          <HowItWorksCard
-            number="1"
-            title="Introduction to Cha Cha"
-            description="It starts with an application. We review each one carefully to understand your background, experience, and why Cha Cha resonates with you. If there's a strong fit, our team will reach out to begin the conversation."
-            image="/images/step-1.png"
-          />
-          <HowItWorksCard
-            number="2"
-            title="Introductory Conversation"
-            description="This is a mutual introduction. We take time to learn about you, your market, and how you think about operating a business — and we'll walk you through Cha Cha's approach, expectations, and growth plans."
-            image="/images/step-2.png"
-          />
-          <HowItWorksCard
-            number="3"
-            title="Location & Market Alignment"
-            description="Our team works closely with partners on market selection and site strategy. We prioritize locations that support repeat daily visits and long-term brand health, not just short-term traffic."
-            image="/images/step-3.png"
-          />
-          <HowItWorksCard
-            number="4"
-            title="Onboarding & Training"
-            description="Once approved, we guide you through onboarding — from training and systems to store design and operations. You'll be supported throughout the process with clear tools, resources, and direct access to our team."
-            image="/images/step-4.png"
-          />
-          <HowItWorksCard
-            number="5"
-            title="Build-Out & Preparation"
-            description="We collaborate closely during build-out and pre-opening to ensure every detail reflects the Cha Cha experience — from layout and flow to staffing and opening readiness."
-            image="/images/step-5.png"
-          />
-          <HowItWorksCard
-            number="6"
-            title="Opening & Ongoing Support"
-            description="When your café opens, our partnership continues. We provide ongoing support across operations, marketing, and brand standards to help you build a strong, sustainable business."
-            image="/images/step-6.png"
-          />
+        {/* Divider line */}
+        <div className="border-t border-cream/20 mb-8" />
+
+        {/* Auto-scrolling card carousel */}
+        <div className="relative">
+          <div className="flex gap-6 animate-scroll pl-6">
+            {[...howItWorksData, ...howItWorksData].map((card, i) => (
+              <div key={i} className="w-[470px] shrink-0 p-5">
+                <div className="flex items-start gap-3 mb-3">
+                  <div className="w-[54px] h-[54px] rounded-full bg-pink/30 flex items-center justify-center shrink-0">
+                    <span className="text-cream font-semibold text-[30px] leading-[1.1] tracking-[-0.6px]">
+                      {card.number}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-[66px] h-[66px] rounded-full overflow-hidden shrink-0">
+                      <Image src={card.image} alt={card.title} width={66} height={66} className="object-cover w-full h-full" />
+                    </div>
+                    <p className="text-pink font-semibold text-[20px] uppercase tracking-[-0.4px] leading-[1.1]">
+                      {card.title}
+                    </p>
+                  </div>
+                </div>
+                <p className="text-cream font-medium text-[18px] leading-[1.1] tracking-[-0.36px] pl-[66px]">
+                  {card.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Apply Now button */}
+        <div className="flex justify-center mt-8">
+          <PrimaryButton />
         </div>
       </section>
 

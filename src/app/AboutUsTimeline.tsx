@@ -60,25 +60,33 @@ export function AboutUsTimeline() {
             return (
               <div
                 key={item.year}
-                className="rounded-[10px] flex-1 min-w-0 p-10 flex flex-row gap-6 transition-all duration-500 ease-in-out"
+                className="rounded-[10px] flex-1 min-w-0 flex flex-row transition-all duration-500 ease-in-out overflow-hidden"
                 style={{ backgroundColor: item.color }}
               >
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-forest font-semibold text-[32px] uppercase tracking-[-0.64px] leading-[1.1] mb-6">
-                    {item.title}
-                  </h3>
-                  <p className="text-text-muted font-medium text-[24px] leading-[1.3] tracking-[-0.48px]">
-                    {item.description}
-                  </p>
+                {/* Vertical year label on left edge */}
+                <div className="w-[48px] shrink-0 flex items-center justify-center">
+                  <span className="text-forest font-semibold text-[24px] uppercase tracking-[-0.48px] -rotate-90 whitespace-nowrap">
+                    {item.year}
+                  </span>
                 </div>
-                <div className="rounded-[15px] overflow-hidden w-[320px] h-full shrink-0">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    width={320}
-                    height={400}
-                    className="object-cover w-full h-full"
-                  />
+                <div className="flex-1 min-w-0 p-8 flex flex-row gap-6">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-forest font-semibold text-[32px] uppercase tracking-[-0.64px] leading-[1.1] mb-6">
+                      {item.title}
+                    </h3>
+                    <p className="text-text-muted font-medium text-[24px] leading-[1.3] tracking-[-0.48px]">
+                      {item.description}
+                    </p>
+                  </div>
+                  <div className="rounded-[15px] overflow-hidden w-[320px] h-full shrink-0">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={320}
+                      height={400}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
                 </div>
               </div>
             );
