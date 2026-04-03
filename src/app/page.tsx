@@ -1,11 +1,13 @@
 import Image from "next/image";
 import { AboutUsTimeline } from "./AboutUsTimeline";
+import { MapSection } from "./MapSection";
+import { PageMenu } from "./PageMenu";
 
 function PrimaryButton({ label = "Apply Now", href = "#apply" }: { label?: string; href?: string }) {
   return (
     <a
       href={href}
-      className="inline-block bg-white text-forest text-[20px] font-semibold uppercase tracking-[-0.4px] rounded-[8px] px-6 py-3 text-center hover:bg-cream transition-colors"
+      className="inline-block bg-white text-forest text-[20px] font-semibold uppercase tracking-[-0.4px] rounded-[8px] px-6 py-3 text-center hover:bg-forest hover:text-cream transition-colors"
     >
       {label}
     </a>
@@ -16,7 +18,7 @@ function SecondaryButton({ label = "Apply Now", href = "#apply" }: { label?: str
   return (
     <a
       href={href}
-      className="inline-block bg-forest text-cream text-[24px] md:text-[30px] font-semibold uppercase tracking-[-0.6px] rounded-[8px] px-8 py-4 text-center hover:bg-forest/90 transition-colors"
+      className="inline-block bg-forest text-cream text-[24px] md:text-[30px] font-semibold uppercase tracking-[-0.6px] rounded-[8px] px-8 py-4 text-center hover:bg-cream hover:text-forest transition-colors"
     >
       {label}
     </a>
@@ -35,7 +37,7 @@ function HowItWorksCard({
   image: string;
 }) {
   return (
-    <div className="bg-forest rounded-[10px] p-5 md:p-6 relative min-h-[200px] md:min-h-[238px]">
+    <div className="bg-forest rounded-[10px] p-5 md:p-6 relative min-h-[200px] md:min-h-[238px] hover:scale-105 transition-transform duration-300 cursor-default">
       <div className="flex items-start gap-3 mb-3">
         <div className="w-[56px] h-[56px] md:w-[66px] md:h-[66px] rounded-full overflow-hidden shrink-0">
           <Image src={image} alt={title} width={66} height={66} className="object-cover w-full h-full" />
@@ -97,17 +99,7 @@ export default function Home() {
       </section>
 
       {/* Page Menu */}
-      <nav id="page-menu" className="flex justify-center gap-6 md:gap-10 py-6 px-4 flex-wrap">
-        {["the experience", "about us", "how it works", "apply today"].map((item) => (
-          <a
-            key={item}
-            href={`#${item.replace(/\s+/g, "-")}`}
-            className="text-forest font-semibold text-[16px] md:text-[24px] uppercase tracking-[-0.48px] hover:text-forest/70 transition-colors"
-          >
-            {item}
-          </a>
-        ))}
-      </nav>
+      <PageMenu />
 
       {/* The Experience */}
       <section id="the-experience" className="max-w-[1280px] mx-auto px-6 md:px-10 pb-16">
@@ -117,13 +109,13 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4">
           {/* Early to Matcha */}
-          <div>
-            <div className="bg-sage rounded-[16px] overflow-hidden h-[350px] md:h-[427px] mb-4 relative">
+          <div className="group cursor-pointer">
+            <div className="bg-sage group-hover:bg-[#7a8e5e] transition-colors duration-300 rounded-[16px] overflow-hidden h-[350px] md:h-[427px] mb-4 relative">
               <Image
                 src="/images/early-to-matcha.png"
                 alt="Early to Matcha"
                 fill
-                className="object-cover rotate-[-17deg] scale-110"
+                className="object-cover rotate-[-17deg] scale-110 group-hover:scale-115 transition-transform duration-300"
               />
             </div>
             <h3 className="text-forest font-semibold text-[24px] md:text-[32px] uppercase tracking-[-0.64px] leading-[1.2] mb-2">
@@ -135,13 +127,13 @@ export default function Home() {
           </div>
 
           {/* The Ritual */}
-          <div>
-            <div className="bg-sage rounded-[16px] overflow-hidden h-[350px] md:h-[493px] mb-4 relative">
+          <div className="group cursor-pointer">
+            <div className="bg-sage group-hover:bg-[#7a8e5e] transition-colors duration-300 rounded-[16px] overflow-hidden h-[350px] md:h-[493px] mb-4 relative">
               <Image
                 src="/images/the-ritual.png"
                 alt="The Ritual"
                 fill
-                className="object-cover rotate-[9.5deg] scale-110"
+                className="object-cover rotate-[9.5deg] scale-110 group-hover:scale-115 transition-transform duration-300"
               />
             </div>
             <h3 className="text-forest font-semibold text-[24px] md:text-[32px] uppercase tracking-[-0.64px] leading-[1.2] mb-2">
@@ -153,13 +145,13 @@ export default function Home() {
           </div>
 
           {/* Our Mission */}
-          <div>
-            <div className="bg-sage rounded-[16px] overflow-hidden h-[350px] md:h-[427px] mb-4 relative">
+          <div className="group cursor-pointer">
+            <div className="bg-sage group-hover:bg-[#7a8e5e] transition-colors duration-300 rounded-[16px] overflow-hidden h-[350px] md:h-[427px] mb-4 relative">
               <Image
                 src="/images/our-mission.png"
                 alt="Our Mission"
                 fill
-                className="object-cover"
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
               />
             </div>
             <h3 className="text-forest font-semibold text-[24px] md:text-[32px] uppercase tracking-[-0.64px] leading-[1.2] mb-2">
@@ -268,67 +260,7 @@ export default function Home() {
       </section>
 
       {/* Map Section */}
-      <section className="max-w-[1280px] mx-auto px-6 md:px-10 pb-8">
-        {/* Map Tabs */}
-        <div className="flex gap-6 mb-4 justify-center md:justify-end">
-          {["USA", "Canada", "International"].map((tab) => (
-            <button
-              key={tab}
-              className="text-forest font-semibold text-[18px] md:text-[24px] uppercase tracking-[-0.48px] hover:text-forest/70 transition-colors"
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
-
-        <div className="flex flex-col md:flex-row gap-6 items-start">
-          {/* Map Image */}
-          <div className="flex-1 w-full">
-            <Image
-              src="/images/canada-map.png"
-              alt="Cha Cha Matcha locations map"
-              width={750}
-              height={584}
-              className="w-full h-auto"
-            />
-          </div>
-
-          {/* Map Stats */}
-          <div className="bg-pink-light rounded-[15px] p-8 w-full md:w-[380px] shrink-0">
-            <div className="space-y-4">
-              <div>
-                <p className="text-forest text-[64px] font-bold leading-[1.1] tracking-[-1.28px]">4</p>
-                <p className="text-forest font-semibold text-[24px] md:text-[32px] uppercase tracking-[-0.64px] leading-[1.1]">
-                  store count
-                </p>
-              </div>
-              <div>
-                <p className="text-forest text-[64px] font-bold leading-[1.1] tracking-[-1.28px]">4</p>
-                <p className="text-forest font-semibold text-[24px] md:text-[32px] uppercase tracking-[-0.64px] leading-[1.1]">
-                  provinces
-                </p>
-              </div>
-              <div>
-                <p className="text-forest text-[64px] font-bold leading-[1.1] tracking-[-1.28px]">2</p>
-                <p className="text-forest font-semibold text-[24px] md:text-[32px] uppercase tracking-[-0.64px] leading-[1.1]">
-                  countries
-                </p>
-              </div>
-            </div>
-
-            <div className="flex gap-6 mt-6">
-              <div className="flex items-center gap-2">
-                <span className="w-4 h-4 rounded-full bg-forest inline-block" />
-                <span className="text-text-muted font-medium text-[16px] md:text-[18px] uppercase tracking-[-0.36px]">Available</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-4 h-4 rounded-full bg-pink inline-block" />
-                <span className="text-text-muted font-medium text-[16px] md:text-[18px] uppercase tracking-[-0.36px]">Unavailable</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <MapSection />
 
       {/* Apply Now CTA */}
       <div className="flex justify-center pb-16">
