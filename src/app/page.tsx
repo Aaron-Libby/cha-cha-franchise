@@ -223,43 +223,42 @@ export default function Home() {
       </section>
 
       {/* How It Works - Desktop (full-width forest green with scrolling carousel) */}
-      <section id="how-it-works" className="hidden md:block bg-forest py-12 overflow-hidden">
-        <div className="max-w-[1280px] mx-auto px-10">
-          {/* Header */}
-          <div className="flex items-start justify-between gap-8 mb-8">
-            <h2 className="text-cream text-[50px] font-bold leading-[1.1] tracking-[-1px] shrink-0">
-              How It Works
-            </h2>
-            <p className="text-white font-medium text-[18px] leading-[1.3] tracking-[-0.36px] max-w-[498px]">
-              We grow deliberately. Our process is designed to ensure alignment — on values, execution, and long-term vision.
-            </p>
-          </div>
+      <section id="how-it-works" className="hidden md:block bg-forest relative overflow-hidden" style={{ height: 556 }}>
+        {/* Header */}
+        <div className="absolute top-[62px] left-1/2 -translate-x-1/2 w-[1280px] px-10 flex items-start gap-8">
+          <h2 className="text-cream text-[50px] font-bold leading-[1.1] tracking-[-1px] shrink-0">
+            How It Works
+          </h2>
+          <p className="text-white font-medium text-[18px] leading-[1.3] tracking-[-0.36px] max-w-[498px] pt-1">
+            We grow deliberately. Our process is designed to ensure alignment — on values, execution, and long-term vision.
+          </p>
         </div>
 
-        {/* Divider line */}
-        <div className="border-t border-cream/20 mb-8" />
+        {/* Timeline line */}
+        <div className="absolute left-0 right-0 top-[254px] border-t border-cream/30" />
 
         {/* Auto-scrolling card carousel */}
-        <div className="relative">
-          <div className="flex gap-6 animate-scroll pl-6">
+        <div className="absolute top-[108px] left-0 right-0 h-[384px] overflow-hidden">
+          <div className="flex animate-scroll">
             {[...howItWorksData, ...howItWorksData].map((card, i) => (
-              <div key={i} className="w-[470px] shrink-0 p-5">
-                <div className="flex items-start gap-3 mb-3">
-                  <div className="w-[54px] h-[54px] rounded-full bg-pink/30 flex items-center justify-center shrink-0">
-                    <span className="text-cream font-semibold text-[30px] leading-[1.1] tracking-[-0.6px]">
-                      {card.number}
-                    </span>
+              <div key={i} className="w-[470px] shrink-0 relative" style={{ height: 252, marginTop: 64 }}>
+                {/* Icon + Title (above timeline) */}
+                <div className="flex items-start gap-2 absolute top-[12px] left-[76px] right-[36px]">
+                  <div className="w-[66px] h-[66px] rounded-full overflow-hidden shrink-0">
+                    <Image src={card.image} alt={card.title} width={66} height={66} className="object-cover w-full h-full" />
                   </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-[66px] h-[66px] rounded-full overflow-hidden shrink-0">
-                      <Image src={card.image} alt={card.title} width={66} height={66} className="object-cover w-full h-full" />
-                    </div>
-                    <p className="text-pink font-semibold text-[20px] uppercase tracking-[-0.4px] leading-[1.1]">
-                      {card.title}
-                    </p>
-                  </div>
+                  <p className="text-pink font-semibold text-[20px] uppercase tracking-[-0.4px] leading-[1.1] pt-1">
+                    {card.title}
+                  </p>
                 </div>
-                <p className="text-cream font-medium text-[18px] leading-[1.1] tracking-[-0.36px] pl-[66px]">
+                {/* Numbered circle (on timeline) */}
+                <div className="absolute left-[16px] top-[51px] w-[54px] h-[54px] rounded-full border-2 border-cream/40 flex items-center justify-center">
+                  <span className="text-cream font-semibold text-[30px] leading-[1.1] tracking-[-0.6px] uppercase">
+                    {card.number}
+                  </span>
+                </div>
+                {/* Description (below timeline) */}
+                <p className="text-cream font-medium text-[18px] leading-[1.1] tracking-[-0.36px] absolute top-[101px] left-[76px] right-[36px]">
                   {card.description}
                 </p>
               </div>
@@ -268,7 +267,7 @@ export default function Home() {
         </div>
 
         {/* Apply Now button */}
-        <div className="flex justify-center mt-8">
+        <div className="absolute bottom-[50px] left-1/2 -translate-x-1/2">
           <PrimaryButton />
         </div>
       </section>
