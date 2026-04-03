@@ -65,14 +65,22 @@ const howItWorksData = [
 export default function Home() {
   return (
     <div className="bg-cream min-h-screen">
-      {/* Navbar */}
-      <header className="w-full">
+      {/* Navbar — Desktop: full width; Mobile: crop to center (logo only) */}
+      <header className="w-full overflow-hidden">
         <Image
           src="/images/navbar.png"
           alt="Cha Cha Matcha navigation"
           width={1280}
           height={86}
-          className="w-full h-auto"
+          className="hidden md:block w-full h-auto"
+          priority
+        />
+        <Image
+          src="/images/navbar.png"
+          alt="Cha Cha Matcha navigation"
+          width={1280}
+          height={86}
+          className="md:hidden w-[1245px] max-w-none h-auto relative left-1/2 -translate-x-1/2"
           priority
         />
       </header>
@@ -116,9 +124,9 @@ export default function Home() {
           The Experience
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4">
+        <div className="flex flex-col md:flex-row gap-6 md:gap-4 md:items-end">
           {/* Early to Matcha */}
-          <div className="group cursor-pointer">
+          <div className="group cursor-pointer md:flex-1">
             <div className="bg-sage group-hover:bg-[#7a8e5e] transition-colors duration-300 rounded-[16px] overflow-hidden h-[350px] md:h-[427px] mb-4 relative">
               <Image
                 src="/images/early-to-matcha.png"
@@ -136,7 +144,7 @@ export default function Home() {
           </div>
 
           {/* The Ritual */}
-          <div className="group cursor-pointer">
+          <div className="group cursor-pointer md:flex-1">
             <div className="bg-sage group-hover:bg-[#7a8e5e] transition-colors duration-300 rounded-[16px] overflow-hidden h-[350px] md:h-[493px] mb-4 relative">
               <Image
                 src="/images/the-ritual.png"
@@ -154,7 +162,7 @@ export default function Home() {
           </div>
 
           {/* Our Mission */}
-          <div className="group cursor-pointer">
+          <div className="group cursor-pointer md:flex-1">
             <div className="bg-sage group-hover:bg-[#7a8e5e] transition-colors duration-300 rounded-[16px] overflow-hidden h-[350px] md:h-[427px] mb-4 relative">
               <Image
                 src="/images/our-mission.png"
